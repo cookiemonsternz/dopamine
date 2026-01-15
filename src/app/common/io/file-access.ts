@@ -35,7 +35,7 @@ export class FileAccess implements FileAccessBase {
             const possibleFilePath: string = this.combinePath([directoryPath, possibleFileName]);
 
             try {
-                if (fs.lstatSync(possibleFilePath).isFile()) {
+                if (fs.lstatSync(possibleFilePath).isFile() || fs.lstatSync(possibleFilePath).isSymbolicLink()) {
                     confirmedFilePaths.push(possibleFilePath);
                 }
             } catch (e: unknown) {
@@ -62,7 +62,7 @@ export class FileAccess implements FileAccessBase {
             const possibleFilePath: string = this.combinePath([directoryPath, possibleFileName]);
 
             try {
-                if (fs.lstatSync(possibleFilePath).isFile()) {
+                if (fs.lstatSync(possibleFilePath).isFile() || fs.lstatSync(possibleFilePath).isSymbolicLink()) {
                     confirmedFilePaths.push(possibleFilePath);
                 }
             } catch (e: unknown) {
